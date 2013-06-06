@@ -8,10 +8,14 @@ import android.opengl.GLU;
 
 public class MyGLRender implements GLSurfaceView.Renderer{
 
+	Square square = new Square();
 	@Override
 	public void onDrawFrame(GL10 gl) {
 		// TODO Auto-generated method stub
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT|GL10.GL_DEPTH_BUFFER_BIT);
+		gl.glLoadIdentity();
+		gl.glTranslatef(0, 0, -4);
+		square.draw(gl);
 	}
 
 	@Override
@@ -20,9 +24,10 @@ public class MyGLRender implements GLSurfaceView.Renderer{
 		gl.glViewport(0, 0, width, height);
 		gl.glMatrixMode(GL10.GL_PROJECTION);
 		gl.glLoadIdentity();
-		GLU.gluPerspective(gl, 45, width/height, 0.5f, 100f);
+		GLU.gluPerspective(gl, 45.0f, (float)width/(float)height, 0.1f, 100f);
 		gl.glMatrixMode(GL10.GL_MODELVIEW);
 		gl.glLoadIdentity();
+		
 	}
 
 	@Override
