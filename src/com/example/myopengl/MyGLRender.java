@@ -8,14 +8,11 @@ import android.opengl.GLU;
 
 public class MyGLRender implements GLSurfaceView.Renderer{
 
-	Square square = new Square();
+	Mesh mesh = new Mesh();
 	@Override
 	public void onDrawFrame(GL10 gl) {
-		// TODO Auto-generated method stub
-		gl.glClear(GL10.GL_COLOR_BUFFER_BIT|GL10.GL_DEPTH_BUFFER_BIT);
-		gl.glLoadIdentity();
-		gl.glTranslatef(0, 0, -4);
-		square.draw(gl);
+		mesh.onDrawFrame(gl);
+		
 	}
 
 	@Override

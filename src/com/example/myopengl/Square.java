@@ -19,20 +19,12 @@ public class Square {
 	private FloatBuffer vertexBuffer;
 	private ShortBuffer indexBuffer;
 	public Square(){
-		ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-		vbb.order(ByteOrder.nativeOrder());
-		vertexBuffer = vbb.asFloatBuffer();
-		vertexBuffer.put(vertices);
-		vertexBuffer.position(0);
+		vertexBuffer = Utils.toFloatBuffer(vertices);
 		
-		ByteBuffer ibb = ByteBuffer.allocateDirect(indices.length*2);
-		ibb.order(ByteOrder.nativeOrder());
-		indexBuffer = ibb.asShortBuffer();
-		indexBuffer.put(indices);
-		indexBuffer.position(0);
+		indexBuffer = Utils.toShortBuffer(indices);
 	}
 	
-	public void draw(GL10 gl) {
+	public void onDrawFrame(GL10 gl) {
 		gl.glFrontFace(GL10.GL_CCW);
 		gl.glEnable(GL10.GL_CULL_FACE);
 		gl.glCullFace(GL10.GL_BACK);
